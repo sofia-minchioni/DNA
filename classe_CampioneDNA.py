@@ -5,7 +5,12 @@ class CampioneDNA:
     """
     def __init__(self,__codice_campione,__sequenza,laboratorio,__geni_mappati=[],__mutazioni_rilevate={}):
         """
-        inizializza una nuova istanza della classe DNA
+        inizializza una nuova istanza della classe DNA con alcuni parametri:
+        codice_campione(str): identifica il campione
+        sequenza(str): sequenza nucleotidica
+        laboratorio(str): nome del laboratorio
+        geni_mappati[str]: lista dei geni
+        mutazioni_rilevate{int,str}: mutazioni del DNA rilevate
         """
         self.__codice_campione=__codice_campione
         self.__sequenza=__sequenza.upper()
@@ -17,6 +22,8 @@ class CampioneDNA:
         """
         aggiunge un nuovo gene alla lista solo se esso non è già presente all'interno della lista
         per evitare duplicati
+        parametro:
+        gene(str):è il nuovo gene che viene aggiunto alla lista solo nel caso in cui non è gia presente
         """
         if gene in self.__geni_mappati:
             print("il gene è gia presente")
@@ -27,6 +34,9 @@ class CampioneDNA:
     def registra_mutazioni(self,posizione,tipo_mutazione):
         """
         inserisce o aggiorna una mutazione nel dizionario __mutazioni_rilevate
+        parametri:
+        posizione(int):indica la posizionedella mutazione
+        tipo_mutazione(str):indicam il tipo di mutazione
         """
         self.__mutazioni_rilevate[posizione]=tipo_mutazione
         print("la mutazione è stata aggiunta")
@@ -34,6 +44,8 @@ class CampioneDNA:
     def calcola_percentuale_gc(self):
         """
         calcola la percentula di basi Guanina(G) e Citosina(C) all'interno della sequenza
+        restituisce:
+        percentuale(float):percentuale di basi guanina e citosina calcolata rispetto alla lunghezza della sequenza nucleotidica
         """
         if len(self.__sequenza) == 0:
             return 0.0
@@ -46,7 +58,7 @@ class CampioneDNA:
         
     def stampa_report(self):
         """
-        permette di stampare a video la scheda riassuntiva con i dati del campione
+        permette di stampare a video la scheda riassuntiva con tutti i dati del campione
         """
         if len(self.__sequenza) > 20:
             seq_troncata = self.__sequenza[:20] + "..."
